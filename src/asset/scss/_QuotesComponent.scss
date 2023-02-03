@@ -40,24 +40,25 @@
   height: 80vh;
 }
 
-.searchBarComponent {
+.searchBarComponent,.faqPage {
   display: grid;
 
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 5px;
+  gap: 10px;
 
   > .quote-component {
     margin: 0.1rem 0;
   }
 }
 @media only screen and (max-width: 767px) {
-  .searchBarComponent {
+  
+  .searchBarComponent,.faqPage {
     grid-template-columns: 1fr;
   }
 }
 
 @media only screen and (min-width: 767px) and (max-width: 960px) {
-  .searchBarComponent {
+  .searchBarComponent,.faqPage {
     grid-template-columns: 1fr 1fr;
   }
 }

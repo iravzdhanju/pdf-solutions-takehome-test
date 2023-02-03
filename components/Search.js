@@ -7,8 +7,7 @@ import refresh from "../src/asset/svg/rotate-solid.svg";
 import db from "../firebase";
 import Image from "next/image";
 
-import { useCollection } from "react-firebase-hooks/firestore";
-import { addDoc, collection, doc, query, where } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 
 const Search = () => {
   const dispatch = useDispatch();
@@ -29,12 +28,16 @@ const Search = () => {
       dispatch(searchQuotes(query));
     }
   };
-  const addtoCollection = collection(db, "favorites");
+
+  const quoteCollection = collection(db, "favorites");
   const handleAddToFavorites = (quote) => {
-    addDoc(addtoCollection, {
+    addDoc(quoteCollection, {
       quote: quote.body,
       author: quote.author,
+      id: quote.id,
     });
+
+    alert("Added to favourites");
   };
 
   return (
@@ -63,7 +66,11 @@ const Search = () => {
               <p className="quote-author">--{quote.author}</p>
 
               <div className="action-container-component">
-                <div className="action-container like">
+                <div
+                  className="action-container like"
+                  onClick={() => handleAddToFavorites(quote)}
+                  title="Like"
+                >
                   <Image
                     src={like}
                     alt="Like"
@@ -77,10 +84,9 @@ const Search = () => {
                 <div
                   className="action-container refresh"
                   onClick={() => handleAddToFavorites(quote)}
+                  title="Remove"
                 >
                   <Image src={refresh} alt="Like" height={28} />
-
-                  {/* <button onClick={() => handleGetFavorites()}>                    Click heres{" "}                  </button> */}
                 </div>
               </div>
             </div>
