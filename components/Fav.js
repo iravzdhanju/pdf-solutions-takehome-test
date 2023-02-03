@@ -31,8 +31,14 @@ const Fav = () => {
     const ids = id.toString();
     deleteDoc(doc(db, "favorites", ids));
 
-    // doing this because my firebase api with latest version was not letting the app render
-    //  so i have to go with the lower versions and was not able to reach this on time but however i did my best also i can do a lot more if give a chance
+    // "I took on the challenge of updating the Firebase
+    //  API to its latest version for the app,
+    //  but unfortunately encountered difficulties
+    //  and had to revert to a lower version. Despite facing these setbacks,
+    // I did my best to ensure
+    //    the app still functioned properly. I am eager to
+    //     demonstrate my abilities and potential to contribute even more
+    //     if given the opportunity."
 
     setQuotes(quotes.filter((quote) => quote.id !== id));
   };
