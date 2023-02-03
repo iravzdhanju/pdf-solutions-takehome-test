@@ -1,16 +1,15 @@
 import axios from "axios";
-import { setQuote } from "./quoteSlice";
+
+import { setQuote, searchQuotesSuccess } from "./quoteSlice";
+const proxy = "https://cors-anywhere.herokuapp.com/";
 export const fetchQuote = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(
-        "https://cors-anywhere.herokuapp.com/https://favqs.com/api/qotd",
-        {
-          headers: {
-            Authorization: `Token token="4c0f11d5b779a85c77405c7f1d5ff4ff"`,
-          },
-        }
-      );
+      const response = await axios.get(`https://favqs.com/api/qotd`, {
+        headers: {
+          Authorization: `Token token="4c0f11d5b779a85c77405c7f1d5ff4ff"`,
+        },
+      });
       dispatch(setQuote(response.data.quote));
     } catch (error) {
       console.error(error);
@@ -26,17 +25,14 @@ export const searchQuotes = (query) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(
-        `https://cors-anywhere.herokuapp.com/https://favqs.com/api/quotes?filter=${query}`,
+        `${proxy}https://favqs.com/api/quotes?filter=${query}`,
         {
           headers: {
             Authorization: `Token token="4c0f11d5b779a85c77405c7f1d5ff4ff"`,
           },
         }
       );
-      dispatch({
-        type: "SEARCH_QUOTES_SUCCESS",
-        payload: response.data.quotes,
-      });
+      dispatch(searchQuotesSuccess(response.data.quotes));
     } catch (error) {
       console.error(error);
       dispatch({

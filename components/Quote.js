@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React, { useEffect } from "react";
+
 import like from "../src/asset/svg/heart-solid.svg";
 import refresh from "../src/asset/svg/rotate-solid.svg";
 import { useDispatch, useSelector } from "react-redux";
