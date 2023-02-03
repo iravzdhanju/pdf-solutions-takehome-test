@@ -10,7 +10,7 @@ import Image from "next/image";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { addDoc, collection, doc, query, where } from "firebase/firestore";
 
-const Search = () => {
+const Temps = () => {
   const dispatch = useDispatch();
   const [query, setQuery] = useState("");
   const quotes = useSelector((state) => state.quotes);
@@ -20,6 +20,7 @@ const Search = () => {
     e.preventDefault();
     dispatch(searchQuotes(query));
   };
+
   const addtoCollection = collection(db, "favorites");
   const handleAddToFavorites = (quote) => {
     addDoc(addtoCollection, {
@@ -28,6 +29,20 @@ const Search = () => {
     });
   };
 
+  const [chatSnapshot, loading, error] = useCollection(addtoCollection);
+  const handleGetFavorites = () => {
+    const favoritesCollection = collection(db, "favorites");
+    if (loading) {
+      return console.log("loading");
+    }
+    if (error) {
+      return console.log("Error", error);
+    }
+    chatSnapshot.docs.map((doc) => {
+      const quote = doc.data();
+      console.log("quote", quote);
+    });
+  };
   return (
     <div className="searchQuotesComponent">
       <form onSubmit={handleSubmit}>
@@ -70,7 +85,9 @@ const Search = () => {
                 >
                   <Image src={refresh} alt="Like" height={28} />
 
-                  {/* <button onClick={() => handleGetFavorites()}>                    Click heres{" "}                  </button> */}
+                  <button onClick={() => handleGetFavorites()}>
+                    Click heres{" "}
+                  </button>
                 </div>
               </div>
             </div>
@@ -81,4 +98,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default Temps;

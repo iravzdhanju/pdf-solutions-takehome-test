@@ -1,9 +1,5 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-import "firebase/database";
-// Your web app's Firebase configuration
+import { initializeApp, getApp, getApps } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 const firebaseConfig = {
   apiKey: "AIzaSyAgX-85X2FdIkcQm3x0j9CQ-8Zio6NggE8",
   authDomain: "pdf-solutions-takehome.firebaseapp.com",
@@ -12,8 +8,8 @@ const firebaseConfig = {
   messagingSenderId: "64146954861",
   appId: "1:64146954861:web:785de15f524ea2349f7d64",
 };
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-
-const database = firebase.database();
+const db = getFirestore(app);
+console.log("this is from firestore", db);
+export default db;
