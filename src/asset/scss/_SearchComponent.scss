@@ -1,0 +1,27 @@
+
+
+
+
+@import "colors";
+
+
+
+
+.inputBoxTab{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+    
+    >button{
+    border:none;
+    
+    height: 30px;
+    border:1px solid  $grape;background-color: transparent;color:$grape;
+    }
+
+    >input{
+
+        border:3 px solid rgb(226, 223, 223);
+    }
+}

@@ -14,22 +14,24 @@ const Search = () => {
     e.preventDefault();
     dispatch(searchQuotes(query));
   };
-
   return (
     <div className="searchQuotesComponent">
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <button type="submit">Search</button>
+        <div className="inputBoxTab">
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <button type="submit">Search</button>
+        </div>
       </form>
-      {console.log(quotesArray)}{" "}
-      {quotesArray[1] &&
-        quotesArray[1].length &&
-        quotesArray[1].map((quote, index) => (
-          <div className="quote-component" key={quote.id}>
+
+      <div className="searchBarComponent">
+        {" "}
+        {console.log(quotesArray)}{" "}
+        {quotesArray[1].slice(0, 8).map((quote, index) => (
+          <div className="quote-component " key={quote.id}>
             <div className="container-sm quote-card ">
               <i className="fas fa-quote-left quote-mark"></i>
               <p className="quote-text">{quote.body}</p>
@@ -55,6 +57,7 @@ const Search = () => {
             </div>
           </div>
         ))}
+      </div>
     </div>
   );
 };

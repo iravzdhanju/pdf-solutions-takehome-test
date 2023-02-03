@@ -5,7 +5,7 @@
 background-color: #fff;
 
 margin-top:10px;
-height:80vh;
+height:110vh;
 }
 
 .toogleBar{
@@ -16,16 +16,12 @@ max-width: 70vw;
 }
 
 
-
 .toggle-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 2.3rem;
-
     text-transform: uppercase;
-    
-
     font-size:0.9em;
   }
   
@@ -49,3 +45,27 @@ max-width: 70vw;
 
 .searchQuotesComponent{height:80vh;}
 
+.searchBarComponent{
+  display: grid;
+
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 5px;
+
+  >.quote-component{
+    margin: 0.1rem 0 ;
+   
+   
+  }
+ 
+}
+@media only screen and (max-width: 767px) {
+    .searchBarComponent {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media only screen and (min-width: 767px) and (max-width: 960px) {
+  .searchBarComponent {
+  grid-template-columns: 1fr 1fr;
+}
+}
