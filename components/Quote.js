@@ -11,7 +11,7 @@ const Quote = () => {
   useEffect(() => {
     dispatch(fetchQuote());
   }, [dispatch]);
-  console.log(quote);
+
   return (
     <div className="quote-component">
       <div className="container-sm quote-card ">
