@@ -56,7 +56,6 @@ const Search = () => {
 
       <div className="searchBarComponent">
         {" "}
-        {console.log(quotesArray)}{" "}
         {quotesArray[1].slice(0, 8).map((quote, index) => (
           <div className="quote-component " key={quote.id}>
             <div className="container-sm quote-card ">

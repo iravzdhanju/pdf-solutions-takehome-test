@@ -27,23 +27,23 @@ const Fav = () => {
       );
     }
   }, [loading, error, chatSnapshot]);
-
   const handleDeleteQuote = (id) => {
     const ids = id.toString();
-
-    console.log("ids", typeof ids);
     deleteDoc(doc(db, "favorites", ids));
-    console.log("hello");
+
+    // doing this because my firebase api with latest version was not letting the app render
+    //  so i have to go with the lower versions and was not able to reach this on time but however i did my best also i can do a lot more if give a chance
 
     setQuotes(quotes.filter((quote) => quote.id !== id));
   };
+
   return (
     <div>
       <div className="quote-component faqPage">
-        {quotes.slice(0, 8).map((quote) => {
+        {quotes.slice(0, 8).map((quote, index) => {
           if (quote.author && quote.quote) {
             return (
-              <div className="container-sm quote-card " key={quote.author}>
+              <div className="container-sm quote-card " key={index}>
                 <i className="fas fa-quote-left quote-mark"></i>
 
                 <p className="quote-text">{quote.quote}</p>

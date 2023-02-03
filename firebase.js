@@ -11,5 +11,4 @@ const firebaseConfig = {
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
 const db = getFirestore(app);
-console.log("this is from firestore", db);
 export default db;
