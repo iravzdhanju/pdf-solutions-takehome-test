@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { searchQuotes } from "../store/actions";
 import like from "../src/asset/svg/heart-solid.svg";
@@ -16,9 +16,18 @@ const Search = () => {
   const quotes = useSelector((state) => state.quotes);
   const quotesArray = quotes && quotes.length ? quotes : Object.values(quotes);
 
+  const inputRef = useRef(null);
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(searchQuotes(query));
+    if (query === "") {
+      inputRef.current.style.border = "1px solid red";
+
+      alert("Please enter a value to Search...");
+      inputRef.current.focus();
+    } else {
+      inputRef.current.style.border = "1px solid green";
+      dispatch(searchQuotes(query));
+    }
   };
   const addtoCollection = collection(db, "favorites");
   const handleAddToFavorites = (quote) => {
@@ -36,6 +45,7 @@ const Search = () => {
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
+            ref={inputRef}
           />
           <button type="submit">Search</button>
         </div>
