@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { searchQuotes } from "../store/actions";
 import like from "../src/asset/svg/heart-solid.svg";
 import refresh from "../src/asset/svg/rotate-solid.svg";
+import app from "../firebase";
 const Search = () => {
   const dispatch = useDispatch();
   const [query, setQuery] = useState("");
@@ -14,6 +15,7 @@ const Search = () => {
     e.preventDefault();
     dispatch(searchQuotes(query));
   };
+
   return (
     <div className="searchQuotesComponent">
       <form onSubmit={handleSubmit}>
